@@ -1,0 +1,43 @@
+import client from "@/app/utils/contentful";
+import { Box, Container, Flex, SimpleGrid, Tag, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import { Suspense } from "react";
+
+
+export default async function Page({ params }) {
+    const id = await params.collectionId;
+
+    console.log(id)
+
+    async function Entries() {
+        const entries = await client.getEntries({
+            content_type: id
+        })
+            .then(entries => {return entries})
+            .catch(error => console.log(error));
+
+        return entries.items.map(entry => {
+            return (
+                <Link key={entry.sys.id} href={`/post/${entry.sys.id}`}>
+                    <Flex flexDir="column" justifyContent="center" _hover={{ shadow: "md" }} transition="0.2s ease" p="5" h="32" w="full" bg="blackAlpha.100" borderRadius="5">
+                        <Tag mb="2" w="fit-content" variant="subtle" colorScheme="blue">{entry.fields.mediaType}</Tag>
+                        <Text noOfLines="1" fontWeight="semibold">{entry.fields.title}</Text>
+                    </Flex>
+                </Link>
+            )
+        })
+    }
+
+    return (
+        <>
+            <Container maxW="7xl" mt="10">
+                <Suspense fallback="Loading collections...">
+                    <SimpleGrid columns={["1", "2", "3"]} gap="5">
+                        <Entries />
+                    </SimpleGrid>
+                </Suspense>
+            </Container>
+        </>
+    )
+}
+
