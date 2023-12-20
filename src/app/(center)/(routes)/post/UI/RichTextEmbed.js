@@ -30,7 +30,7 @@ export default function RichTextEmbed({ page }) {
     );
 
     const Blockquote = ({ children }) => (
-        <Box borderLeftWidth="thin" borderColor="gray" pl="4" fontStyle="italic" my="4">
+        <Box borderLeftWidth="5px" borderRadius="4" borderColor="blackAlpha.300" pl="4" fontStyle="italic" my="4">
             {children}
         </Box>
     );
