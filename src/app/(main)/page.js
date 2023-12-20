@@ -1,6 +1,10 @@
 import { Box, Button, Container, Heading, Input, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
+export const metadata = {
+	title: "Haven Help Center"
+}
+
 
 export default function Home() {
 	return (

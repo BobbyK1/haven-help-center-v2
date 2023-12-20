@@ -1,11 +1,15 @@
 import client from "@/app/utils/contentful";
 import { Suspense } from "react";
 import YoutubeEmbed from "../UI/YoutubeEmbed";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, Container, Heading } from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import GoogleSlideEmbed from "../UI/GoogleSlideEmbed";
 import RichTextEmbed from "../UI/RichTextEmbed";
 import Link from "next/link";
 import { ChevronRight } from "@/app/(center)/UI/icons";
+
+export const metadata = {
+	title: "Haven Help Center"
+}
 
 export default async function Page({ params }) {
     const id = params.postId;
@@ -85,19 +89,27 @@ export default async function Page({ params }) {
 
     return (
         <Container maxW="container.sm" pb="20" my="10">
-            <Breadcrumb mb="10" fontSize={["xs", "xs", "sm"]}  separator={<ChevronRight fontSize="xs" />}>
-                <BreadcrumbItem>
-                    <BreadcrumbLink fontSize={["xs", "xs", "sm"]} as={Link} href="/collections">All Collections</BreadcrumbLink>
-                </BreadcrumbItem>
+            <Stack wrap="wrap" direction="row" spacing="2" mb="10">
+                <Stack direction="row" spacing="2" alignItems="center">
+                    <Link href="/collections">
+                        <Text fontSize="sm">All Collections</Text>
+                    </Link>
 
-                <BreadcrumbItem>
-                    <BreadcrumbLink fontSize={["xs", "xs", "sm"]} as={Link} href={`/collections/${collection.slug}`}>{collection.name}</BreadcrumbLink>
-                </BreadcrumbItem>
+                    <ChevronRight fontSize="sm" />
+                </Stack>
 
-                <BreadcrumbItem>
-                    <BreadcrumbLink isCurrentPage={true} fontSize={["xs", "xs", "sm"]}>{post.fields.title}</BreadcrumbLink>
-                </BreadcrumbItem>
-            </Breadcrumb>
+                <Stack direction="row" spacing="2" alignItems="center">
+                    <Link href={`/collections/${collection.slug}`}>
+                        <Text fontSize="sm">{collection.name}</Text>
+                    </Link>
+
+                    <ChevronRight fontSize="sm" />
+                </Stack>
+
+                <Stack direction="row" spacing="2" alignItems="center">
+                    <Text color="blackAlpha.600" fontSize="sm">{post.fields.title}</Text>
+                </Stack>
+            </Stack>
             <Suspense fallback="Loading...">
                 <Heading mb="10">{post.fields.title}</Heading>
 

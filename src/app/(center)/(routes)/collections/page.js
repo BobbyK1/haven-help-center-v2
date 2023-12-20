@@ -3,6 +3,9 @@ import { Box, Container, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { Suspense } from "react";
 
+export const metadata = {
+	title: "Haven Help Center"
+}
 
 export default async function Page() {
 
