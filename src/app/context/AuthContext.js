@@ -1,17 +1,18 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react"
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import app from "../utils/firebase";
+import { Flex, Spinner } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
     const auth = getAuth(app);
+    const router = useRouter();
 
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, (user) => {
@@ -21,6 +22,7 @@ export const AuthContextProvider = ({ children }) => {
                 setUser(user);
             } else {
                 setUser(null);
+                router.push('/')
             }
 
             setLoading(false);
@@ -31,7 +33,14 @@ export const AuthContextProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            {children}
+            {
+                loading  ?
+                <Flex w="full" h="50vh" justifyContent="center" alignItems="center">
+                    <Spinner />
+                </Flex>
+                :
+                children
+            }
         </AuthContext.Provider>
     )
 }

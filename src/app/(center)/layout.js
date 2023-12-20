@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { ChevronRight } from "./UI/icons";
 import index from "../utils/algolia";
+import { AuthContextProvider } from "../context/AuthContext";
+import Navbar from "../UI/navbar";
 
 
 export default function Layout({ children }) {
@@ -31,7 +33,8 @@ export default function Layout({ children }) {
     }
 
     return (
-        <>
+        <AuthContextProvider>
+            <Navbar />
             <Flex alignItems="center" justifyContent="center" w="full" bg="gray.800" minH="25vh">
                 <Container maxW="container.md">
                     <Heading as="h1" textAlign="center" fontSize={["2xl", "2xl", "3xl"]} color="whiteAlpha.900">What do you need help with?</Heading>
@@ -70,6 +73,6 @@ export default function Layout({ children }) {
             </Flex>
 
             {children}
-        </>
+        </AuthContextProvider>
     )
 }

@@ -8,31 +8,34 @@ export const metadata = {
 }
 
 export default async function Page() {
-
-    async function Collections() {
+    async function GetCollections() {
         const types = await client.getContentTypes()
             .then(types => {
                 return types
             })
             .catch(error => console.log(error))
 
-        return types.items.map(type => {
-            return (
-                <Link key={type.sys.id} href={`/collections/${type.sys.id}`}>
-                    <Flex _hover={{ shadow: "md" }} transition="0.2s ease" justifyContent="center" alignItems="center" p="5" h="32" w="full" bg="blackAlpha.100" borderRadius="5">
-                        <Text fontWeight="semibold">{type.name}</Text>
-                    </Flex>
-                </Link>
-            )
-        })
+        return types
     }
+
+    const collections = await GetCollections();
 
     return (
         <>
             <Container maxW="7xl" mt="10">
                 <Suspense fallback="Loading collections...">
                     <SimpleGrid columns={["1", "2", "3"]} gap="5">
-                        <Collections />
+                        <>
+                            {collections.items.map(type => {
+                                return (
+                                    <Link key={type.sys.id} href={`/collections/${type.sys.id}`}>
+                                        <Flex _hover={{ shadow: "md" }} transition="0.2s ease" justifyContent="center" alignItems="center" p="5" h="32" w="full" bg="blackAlpha.100" borderRadius="5">
+                                            <Text fontWeight="semibold">{type.name}</Text>
+                                        </Flex>
+                                    </Link>
+                                )
+                            })}
+                        </>
                     </SimpleGrid>
                 </Suspense>
             </Container>

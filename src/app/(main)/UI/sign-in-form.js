@@ -1,7 +1,8 @@
 'use client'
 
+import { AuthContextProvider, UserAuth } from "@/app/context/AuthContext";
 import app from "@/app/utils/firebase";
-import { Alert, AlertIcon, Button, Input, Stack, Text, useToast } from "@chakra-ui/react"
+import { Alert, AlertIcon, Button, Center, Input, Stack, Text, useToast } from "@chakra-ui/react"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link"
 import { useRouter } from "next/navigation";
@@ -14,7 +15,7 @@ export default function SignInForm() {
     const [error, setError] = useState('');
 
     const router = useRouter();
-    const toast = useToast();
+    const { user } = UserAuth();
 
     const auth = getAuth(app);
 
@@ -35,21 +36,33 @@ export default function SignInForm() {
     }
 
     return (
-        <form>
-            {error && <Alert mb="4" borderRadius="3" status="error" variant="left-accent"><AlertIcon /> Incorrect email or password</Alert>}
-            <Text fontSize="md" mb="2" fontWeight="medium">Email</Text>
-            <Input type="email" onChange={(e) => setEmail(e.currentTarget.value)} placeholder="example@domain.com" required borderColor="blackAlpha.300" name="email" />
+        <>
+            {user ?
+                <>
+                    <Text textAlign="center" fontSize="sm">Logged in as <Text as="span" fontWeight="semibold">{user.email}</Text></Text>
+                    <Center mt="4">
+                        <Link href="/collections">
+                            <Button size="sm">Continue</Button>
+                        </Link>
+                    </Center>
+                </> :
+                <form>
+                    {error && <Alert mb="4" borderRadius="3" status="error" variant="left-accent"><AlertIcon /> Incorrect email or password</Alert>}
+                    <Text fontSize="md" mb="2" fontWeight="medium">Email</Text>
+                    <Input type="email" onChange={(e) => setEmail(e.currentTarget.value)} placeholder="example@domain.com" required borderColor="blackAlpha.300" name="email" />
 
-            <Text fontSize="md" mt="5" mb="2" fontWeight="medium">Password</Text>
-            <Input type="password" onChange={(e) => setPassword(e.currentTarget.value)} required borderColor="blackAlpha.300" name="password" />
+                    <Text fontSize="md" mt="5" mb="2" fontWeight="medium">Password</Text>
+                    <Input type="password" onChange={(e) => setPassword(e.currentTarget.value)} required borderColor="blackAlpha.300" name="password" />
 
-            <Stack direction="row" mt="5" justify="space-between" alignItems="center">
-                <Link href="/forgot-password">
-                    <Text _hover={{ textDecor: "underline" }} color="blue.500">Forgot Password?</Text>
-                </Link>
+                    <Stack direction="row" mt="5" justify="space-between" alignItems="center">
+                        <Link href="/forgot-password">
+                            <Text _hover={{ textDecor: "underline" }} color="blue.500">Forgot Password?</Text>
+                        </Link>
 
-                <Button onClick={handleLogin} isLoading={loading} isDisabled={email.length === 0 || password.length === 0} variant="solid" size="sm">Sign In</Button>
-            </Stack>
-        </form>
+                        <Button onClick={handleLogin} isLoading={loading} isDisabled={email.length === 0 || password.length === 0} variant="solid" size="sm">Sign In</Button>
+                    </Stack>
+                </form>
+            }
+        </>
     )
 }
