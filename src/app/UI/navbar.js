@@ -31,9 +31,24 @@ export default function Navbar() {
                         <Text fontSize="lg" fontWeight="semibold"><Text as="span" fontWeight="bold">HAVEN</Text> Help Center</Text>
                     </Stack>
                 </Link>
+
                 {user && 
                     <>
-                        <Button onClick={logout} variant="ghost" size="sm">Log out</Button>
+                        <Box display={[ "none", "none", "inline-block" ]}>
+                            <Button as={Link} variant="ghost" size="sm" href="/post/7JJ7FL8RynxLjyp8loJVAO">Helpful Links</Button>
+                            <Button onClick={logout} variant="ghost" size="sm">Log out</Button>
+                        </Box>
+                        <Box display={[ "inline-block", "inline-block", "none" ]}>
+                            <Menu>
+                                <MenuButton as={IconButton} icon={<HamburgerMenu fontSize="xl" />} variant="ghost" size="md" />
+
+
+                                <MenuList>
+                                    <MenuItem as={Link} href="/post/7JJ7FL8RynxLjyp8loJVAO">Helpful Links</MenuItem>
+                                    <MenuItem onClick={logout}>Log out</MenuItem>
+                                </MenuList>
+                            </Menu>
+                        </Box>
                     </>
                 }
                 {!user && 

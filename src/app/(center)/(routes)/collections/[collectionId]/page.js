@@ -23,20 +23,25 @@ export default async function Page({ params }) {
 
     const entries = await GetEntries();
 
-    async function GetCollection() {
-        const collection = await client.getContentType(entries.items[0].sys.contentType.sys.id)
-            .then(data => {
-                return { name: data.name, slug: data.sys.id};
-            })
+    if (entries.items.length > 0) {
 
-        return collection;
+
+        async function GetCollection() {
+            const collection = await client.getContentType(entries.items[0].sys.contentType.sys.id)
+                .then(data => {
+                    return { name: data.name, slug: data.sys.id};
+                })
+    
+            return collection;
+        }
+    
+        var collection = await GetCollection();
     }
-
-    const collection = await GetCollection();
 
     return (
         <>
             <Container maxW="7xl" mt="10">
+                {entries.items.length > 0 &&
                 <Suspense fallback="Loading collections...">
                     <Stack wrap="wrap" direction="row" spacing="2" mb="10">
                         <Stack direction="row" spacing="2" alignItems="center">
@@ -67,7 +72,7 @@ export default async function Page({ params }) {
                             })}
                         </>
                     </SimpleGrid>
-                </Suspense>
+                </Suspense>}
             </Container>
         </>
     )

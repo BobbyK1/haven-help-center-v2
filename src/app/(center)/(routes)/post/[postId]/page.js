@@ -88,7 +88,7 @@ export default async function Page({ params }) {
     const collection = await GetCollection();
 
     return (
-        <Container maxW="container.sm" pb="20" my="10">
+        <Container maxW="7xl" mt="10">
             <Stack wrap="wrap" direction="row" spacing="2" mb="10">
                 <Stack direction="row" spacing="2" alignItems="center">
                     <Link href="/collections">
@@ -110,14 +110,17 @@ export default async function Page({ params }) {
                     <Text color="blackAlpha.600" fontSize="sm">{post.fields.title}</Text>
                 </Stack>
             </Stack>
-            <Suspense fallback="Loading...">
-                <Heading mb="10">{post.fields.title}</Heading>
 
-                {mediaType === "Blog" && <RichTextEmbed page={post.fields.postBody} />}
-                {mediaType === "Video" && <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} />}
-                {mediaType === "Google Slide" && <GoogleSlideEmbed link={post.fields.videoLink} />}
-            </Suspense>
-        </Container>
-        
+            <Container maxW="container.md" pb="20" my="10">
+            
+                <Suspense fallback="Loading...">
+                    <Heading mb="10">{post.fields.title}</Heading>
+
+                    {mediaType === "Blog" && <RichTextEmbed page={post.fields.postBody} />}
+                    {mediaType === "Video" && <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} />}
+                    {mediaType === "Google Slide" && <GoogleSlideEmbed link={post.fields.videoLink} />}
+                </Suspense>
+            </Container>
+        </Container> 
     )
 }
