@@ -6,6 +6,7 @@ import GoogleSlideEmbed from "../UI/GoogleSlideEmbed";
 import RichTextEmbed from "../UI/RichTextEmbed";
 import Link from "next/link";
 import { ChevronRight } from "@/app/(center)/UI/icons";
+import PdfEmbed from "../UI/PDFEmbed";
 
 export const metadata = {
 	title: "Haven Help Center"
@@ -111,7 +112,7 @@ export default async function Page({ params }) {
                 </Stack>
             </Stack>
 
-            <Container maxW="container.md" pb="20" my="10">
+            <Container maxW="container.xl" pb="20" my="10">
             
                 <Suspense fallback="Loading...">
                     <Heading mb="10">{post.fields.title}</Heading>
@@ -119,6 +120,7 @@ export default async function Page({ params }) {
                     {mediaType === "Blog" && <RichTextEmbed page={post.fields.postBody} />}
                     {mediaType === "Video" && <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} />}
                     {mediaType === "Google Slide" && <GoogleSlideEmbed link={post.fields.videoLink} />}
+                    {mediaType === "PDF" && <PdfEmbed embedLink={post.fields.videoLink} />}
                 </Suspense>
             </Container>
         </Container> 
