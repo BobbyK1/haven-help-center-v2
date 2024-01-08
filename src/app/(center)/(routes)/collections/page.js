@@ -7,6 +7,8 @@ export const metadata = {
 	title: "Haven Help Center"
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
     async function GetCollections() {
         const types = await client.getContentTypes()

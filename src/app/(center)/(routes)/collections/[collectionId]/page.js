@@ -8,6 +8,8 @@ export const metadata = {
 	title: "Haven Help Center"
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page({ params }) {
     const id = await params.collectionId;
 
