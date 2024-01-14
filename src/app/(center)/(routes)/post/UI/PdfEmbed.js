@@ -2,5 +2,5 @@
 
 export default function PdfEmbed({ embedLink }) {
 
-    return <iframe src={embedLink} style={{ width: "100%", marginBottom: "10px"}} />
+    return <iframe src={embedLink} style={{ width: "100%", height: "1000px", marginBottom: "10px"}} />
 }
