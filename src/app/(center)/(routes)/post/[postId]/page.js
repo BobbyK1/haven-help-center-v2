@@ -73,10 +73,20 @@ export default async function Page({ params }) {
                 <Suspense fallback="Loading...">
                     <Heading mb="10">{post.fields.title}</Heading>
 
-                    {mediaType === "Blog" && <RichTextEmbed page={post.fields.postBody} />}
+                    {post.fields.videoLink && mediaType === "Video" ? <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} /> : null}
+
+                    {post.fields.videoLink && mediaType === "Google Slide" ? <GoogleSlideEmbed link={post.fields.videoLink} /> : null}
+
+                    {post.fields.videoLink && mediaType === "PDF" ? <PdfEmbed embedLink={post.fields.videoLink} /> : null}
+
+                    {post.fields.postBody ? <RichTextEmbed page={post.fields.postBody} /> : null}
+
+                    
+
+                    {/* {mediaType === "Blog" && <RichTextEmbed page={post.fields.postBody} />}
                     {mediaType === "Video" && <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} />}
                     {mediaType === "Google Slide" && <GoogleSlideEmbed link={post.fields.videoLink} />}
-                    {mediaType === "PDF" && <PdfEmbed embedLink={post.fields.videoLink} />}
+                    {mediaType === "PDF" && <PdfEmbed embedLink={post.fields.videoLink} />} */}
                 </Suspense>
             </Container>
         </Container> 
