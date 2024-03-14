@@ -1,7 +1,7 @@
 import client from "@/app/utils/contentful";
 import { Suspense } from "react";
 import YoutubeEmbed from "../UI/YoutubeEmbed";
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Divider, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import GoogleSlideEmbed from "../UI/GoogleSlideEmbed";
 import RichTextEmbed from "../UI/RichTextEmbed";
 import Link from "next/link";
@@ -74,6 +74,13 @@ export default async function Page({ params }) {
                     <Heading mb="10">{post.fields.title}</Heading>
 
                     {post.fields.videoLink && mediaType === "Video" ? <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} /> : null}
+
+                    {post.fields.prevVideoLink || post.fields.nextVideoLink ?
+                        <>
+                            <Text fontSize="lg"  fontWeight="bold">Check Out What's Next</Text>
+                            <Divider mb="5" mt="3" borderColor="blackAlpha.500" />
+                        </> 
+                     : null}
 
                     <Stack direction="row" mb={post.fields.prevVideoLink || post.fields.nextVideoLink ? "20" : "0"}>
                         {post.fields.prevVideoLink && 
