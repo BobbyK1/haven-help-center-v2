@@ -82,10 +82,10 @@ export default async function Page({ params }) {
                         </> 
                      : null}
 
-                    <Stack direction="row" mb={post.fields.prevVideoLink || post.fields.nextVideoLink ? "20" : "0"}>
+                    <Stack direction={["column", "column", "row"]} mb={post.fields.prevVideoLink || post.fields.nextVideoLink ? "20" : "0"}>
                         {post.fields.prevVideoLink && 
                             <Box borderWidth="thin" borderRadius="10" borderColor="blackAlpha.300" pb="0" as={Link} href={`${post.fields.prevVideoLink}`} w="full">
-                                <Stack role="group" direction="row" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" borderRadius="10">
+                                <Stack role="group" direction="row" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" px="3" borderRadius="10">
                                     <Box>
                                         <Text fontSize="sm" fontWeight="semibold"><Text as="span" fontSize="sm" mr="5">Previous:</Text> {post.fields.prevVideoTitle}</Text>
                                     </Box> 
@@ -106,7 +106,7 @@ export default async function Page({ params }) {
 
                         {post.fields.nextVideoLink && 
                             <Box borderWidth="thin" borderRadius="10" borderColor="blackAlpha.300" pb="0" as={Link} href={`${post.fields.nextVideoLink}`} w="full">
-                                <Stack role="group" direction="row" borderRadius="10" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" >
+                                <Stack role="group" direction="row" borderRadius="10" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" px="3" >
                                     <Box>
                                         <Text fontSize="sm" fontWeight="semibold"><Text as="span" fontSize="sm" mr="5">Next Up:</Text> {post.fields.nextVideoTitle}</Text>
                                     </Box> 
