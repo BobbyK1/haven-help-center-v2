@@ -1,7 +1,7 @@
 import client from "@/app/utils/contentful";
 import { Suspense } from "react";
 import YoutubeEmbed from "../UI/YoutubeEmbed";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import GoogleSlideEmbed from "../UI/GoogleSlideEmbed";
 import RichTextEmbed from "../UI/RichTextEmbed";
 import Link from "next/link";
@@ -74,6 +74,50 @@ export default async function Page({ params }) {
                     <Heading mb="10">{post.fields.title}</Heading>
 
                     {post.fields.videoLink && mediaType === "Video" ? <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} /> : null}
+
+                    <Stack direction="row" mb={post.fields.prevVideoLink || post.fields.nextVideoLink ? "20" : "0"}>
+                        {post.fields.prevVideoLink && 
+                            <Box borderWidth="thin" borderRadius="10" borderColor="blackAlpha.300" pb="0" as={Link} href={`${post.fields.prevVideoLink}`} w="full">
+                                <Stack role="group" direction="row" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" borderRadius="10">
+                                    <Box>
+                                        <Text fontSize="sm" fontWeight="semibold"><Text as="span" fontSize="sm" mr="5">Previous:</Text> {post.fields.prevVideoTitle}</Text>
+                                    </Box> 
+
+                                    <Flex 
+                                        transition={'all .3s ease'}
+                                        transform={'translateX(-10px)'}
+                                        opacity={0}
+                                        _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+                                        justify={'flex-end'}
+                                        align={'center'}
+                                        flex={1}>
+                                        <ChevronRight />
+                                    </Flex>
+                                </Stack>
+                            </Box>
+                        }
+
+                        {post.fields.nextVideoLink && 
+                            <Box borderWidth="thin" borderRadius="10" borderColor="blackAlpha.300" pb="0" as={Link} href={`${post.fields.nextVideoLink}`} w="full">
+                                <Stack role="group" direction="row" borderRadius="10" justify="space-between" alignItems="center"  _hover={{ bgColor: "blue.50" }} transition="0.2s ease" p="5" >
+                                    <Box>
+                                        <Text fontSize="sm" fontWeight="semibold"><Text as="span" fontSize="sm" mr="5">Next Up:</Text> {post.fields.nextVideoTitle}</Text>
+                                    </Box> 
+
+                                    <Flex 
+                                        transition={'all .3s ease'}
+                                        transform={'translateX(-10px)'}
+                                        opacity={0}
+                                        _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+                                        justify={'flex-end'}
+                                        align={'center'}
+                                        flex={1}>
+                                        <ChevronRight />
+                                    </Flex>
+                                </Stack>
+                            </Box>
+                        }
+                    </Stack>
 
                     {post.fields.videoLink && mediaType === "Google Slide" ? <GoogleSlideEmbed link={post.fields.videoLink} /> : null}
 
