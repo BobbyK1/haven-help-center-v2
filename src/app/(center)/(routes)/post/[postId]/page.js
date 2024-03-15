@@ -73,8 +73,6 @@ export default async function Page({ params }) {
                 <Suspense fallback="Loading...">
                     <Heading mb="10">{post.fields.title}</Heading>
 
-                    {post.fields.videoLink && mediaType === "Video" ? <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} /> : null}
-
                     {post.fields.prevVideoLink || post.fields.nextVideoLink ?
                         <>
                             <Text fontSize="lg"  fontWeight="bold">Check Out What's Next</Text>
@@ -125,6 +123,10 @@ export default async function Page({ params }) {
                             </Box>
                         }
                     </Stack>
+
+                    {post.fields.videoLink && mediaType === "Video" ? <YoutubeEmbed videoId={extractVideoId(post.fields.videoLink)} /> : null}
+
+                    
 
                     {post.fields.videoLink && mediaType === "Google Slide" ? <GoogleSlideEmbed link={post.fields.videoLink} /> : null}
 
