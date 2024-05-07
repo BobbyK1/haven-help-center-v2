@@ -35,7 +35,7 @@ export default function Navbar() {
                 {user && 
                     <>
                         <Box display={[ "none", "none", "inline-block" ]}>
-                            <Button as={Link} variant="ghost" size="sm" href="/post/7JJ7FL8RynxLjyp8loJVAO">Helpful Links</Button>
+                            <Button as={Link} variant="ghost" size="sm" href="/hub">App Hub</Button>
                             <Button onClick={logout} variant="ghost" size="sm">Log out</Button>
                         </Box>
                         <Box display={[ "inline-block", "inline-block", "none" ]}>
@@ -44,7 +44,7 @@ export default function Navbar() {
 
 
                                 <MenuList>
-                                    <MenuItem as={Link} href="/post/7JJ7FL8RynxLjyp8loJVAO">Helpful Links</MenuItem>
+                                    <MenuItem as={Link} href="/hub">App Hub</MenuItem>
                                     <MenuItem onClick={logout}>Log out</MenuItem>
                                 </MenuList>
                             </Menu>
