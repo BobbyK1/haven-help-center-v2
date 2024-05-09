@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function RichTextEmbed({ page }) {
-    const Bold = ({ children }) => <Text fontWeight="bold">{children}</Text>;
+    const Bold = ({ children }) => <Text as="span" fontWeight="bold">{children}</Text>;
 
     const TextBlock = ({ children }) => (
         <Box mb="4">{children}</Box>
