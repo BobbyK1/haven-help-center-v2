@@ -12,6 +12,10 @@ export default function Page() {
                 <Heading as="h2" fontSize="3xl">Everyday Apps</Heading>
                 <Divider my="5" borderColor="blackAlpha.600" />
                 <SimpleGrid columns={[1, 1, 2, 3]} gap="10">
+                    <Button as={Link} href="https://my.sisu.co/login" target="_blank" bgColor="white" _hover={{ transform: "scale(1.02)" }} transition="0.5s ease" shadow="lg" borderRadius="5" w="full" h="52">
+                        <Image priority src="/sisu-logo.svg" height="100" width="150" />
+                    </Button>
+
                     <Button as={Link} href="https://www.findnwindianahomesforsale.com/" target="_blank" bgColor="white" _hover={{ transform: "scale(1.02)" }} transition="0.5s ease" shadow="lg" borderRadius="5" w="full" h="52">
                         <Image priority src="/Cinc-Logo.svg" height="100" width="150" />
                     </Button>
