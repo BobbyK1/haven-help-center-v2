@@ -16,7 +16,7 @@ export default function RichTextEmbed({ page }) {
         const idLink = str.replace(/\s/g, "-").toLowerCase();
         
         return (
-            <Heading id={idLink} as={`h${level}`} fontSize={level === 1 ? "2xl" : level === 2 ? "xl" : "lg"} mt="10" mb="10">
+            <Heading id={idLink} as={`h${level}`} fontSize={level === 1 ? "3xl" : level === 2 ? "xl" : "lg"} mt="10" mb="10">
                 {children}
             </Heading>
         );
@@ -47,7 +47,7 @@ export default function RichTextEmbed({ page }) {
         },
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => <TextBlock>{children}</TextBlock>,
-            [BLOCKS.HEADING_1]: (node, children) => <HeadingBlock level={1} id={children.replace(/\s/g, "-")}>{children}</HeadingBlock>,
+            [BLOCKS.HEADING_1]: (node, children) => <HeadingBlock level={1} id={children.toString().replace(/\s/g, "-")}>{children}</HeadingBlock>,
             [BLOCKS.HEADING_2]: (node, children) => <HeadingBlock level={2}>{children}</HeadingBlock>,
             [BLOCKS.HEADING_3]: (node, children) => <HeadingBlock level={3}>{children}</HeadingBlock>,
             [BLOCKS.OL_LIST]: (node, children) => <Box as="ol" pl="4" mb="4">{children}</Box>,

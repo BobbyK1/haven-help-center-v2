@@ -36,8 +36,7 @@ export default function TableOfContents({ post }) {
 
     return (
         <Box position={["relative", "", "", "sticky"]} top="5" h="fit-content" minW="sm" bgColor="white" borderColor="blackAlpha.300" shadow="lg">
-            <Box p="5" bgColor="gray.700" color="whitesmoke" borderTopRadius="5" borderBottomLeftRadius="-62">
-                <Text textAlign="center" fontWeight="semibold" fontSize="lg">Table of Contents</Text>
+            <Box p="2" bgColor="gray.700" color="whitesmoke" borderTopRadius="5" borderBottomLeftRadius="-62">
             </Box>
 
             <Box p="5">

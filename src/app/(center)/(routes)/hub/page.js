@@ -32,11 +32,7 @@ export default function Page() {
 
                     <Button as={Link} href="https://www.zipformplus.com/" target="_blank" bgColor="white" _hover={{ transform: "scale(1.02)" }} transition="0.5s ease" shadow="lg" borderRadius="5" w="full" h="52">
                         <Image priority src="/zipforms-logo.png" height="100" width="150" />
-                    </Button> 
-
-                    <Button as={Link} href="https://havenrealty.bamboohr.com/login.php" target="_blank" bgColor="white" _hover={{ transform: "scale(1.02)" }} transition="0.5s ease" shadow="lg" borderRadius="5" w="full" h="52">
-                        <Image priority src="/bamboohr-logo.png" height="100" width="150" />
-                    </Button> 
+                    </Button>
 
                     <Button as={Link} href="https://narrpr.com" target="_blank" bgColor="white" _hover={{ transform: "scale(1.02)" }} transition="0.5s ease" shadow="lg" borderRadius="5" w="full" h="52">
                         <Image priority src="/rpr-logo.jpg" height="100" width="150" />

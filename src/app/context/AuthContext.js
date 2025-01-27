@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import app from "../utils/firebase";
 import { Flex, Spinner } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
