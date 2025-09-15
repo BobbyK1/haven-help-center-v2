@@ -16,7 +16,7 @@ export default function RichTextEmbed({ page }) {
         const idLink = str.replace(/\s/g, "-").toLowerCase();
         
         return (
-            <Heading id={idLink} as={`h${level}`} fontSize={level === 1 ? "3xl" : level === 2 ? "xl" : "lg"} mt="10" mb="10">
+            <Heading id={idLink} as={`h${level}`} fontSize={level === 1 ? "3xl" : level === 2 ? "2xl" : "xl"} mt="10" mb="10">
                 {children}
             </Heading>
         );

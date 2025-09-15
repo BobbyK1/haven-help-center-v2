@@ -58,7 +58,7 @@ export default async function Page({ params }) {
 
     return (
         <>
-            <Container maxW="7xl" mt="10">
+            <Container maxW="5xl" mt="10">
                 <Stack wrap="wrap" direction="row" spacing="2" mb="10">
                     <Stack direction="row" spacing="2" alignItems="center">
                         <Link href="/collections">
@@ -82,7 +82,7 @@ export default async function Page({ params }) {
                 </Stack>
                 <Stack direction={["column", "column", "", "row"]}>
                     <Box w="full">
-                        <Container maxW="container.xl" pb="20" mb="10">
+                        <Box maxW="full" pb="20" mb="10">
                             <Suspense fallback="Loading...">
                                 <Heading mb="10">{post.fields.title}</Heading>
                                 
@@ -150,7 +150,7 @@ export default async function Page({ params }) {
 
                                 {post.fields.postBody ? <RichTextEmbed page={post.fields.postBody} /> : null}
                             </Suspense>
-                        </Container>
+                        </Box>
                     </Box>
                 </Stack>
             </Container> 
