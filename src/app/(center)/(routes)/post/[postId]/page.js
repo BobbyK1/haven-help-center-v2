@@ -80,13 +80,9 @@ export default async function Page({ params }) {
                         <Text color="blackAlpha.600" fontSize="sm">{post.fields.title}</Text>
                     </Stack>
                 </Stack>
-                <Stack direction={["column", "column", "", "row"]} spacing="20">
-                    {checkHeadings() ? <TableOfContents post={post} /> : null}
-
+                <Stack direction={["column", "column", "", "row"]}>
                     <Box w="full">
-
                         <Container maxW="container.xl" pb="20" mb="10">
-                        
                             <Suspense fallback="Loading...">
                                 <Heading mb="10">{post.fields.title}</Heading>
                                 
@@ -149,6 +145,8 @@ export default async function Page({ params }) {
                                 {post.fields.videoLink && mediaType === "Google Slide" ? <GoogleSlideEmbed link={post.fields.videoLink} /> : null}
 
                                 {post.fields.videoLink && mediaType === "PDF" ? <PdfEmbed embedLink={post.fields.videoLink} /> : null}
+                                
+                                {/* {checkHeadings() ? <TableOfContents post={post} /> : null} */}
 
                                 {post.fields.postBody ? <RichTextEmbed page={post.fields.postBody} /> : null}
                             </Suspense>

@@ -1,7 +1,7 @@
 'use client'
 
 import { Selected, Unselected } from "@/app/UI/icons";
-import { Box, Stack, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -35,25 +35,23 @@ export default function TableOfContents({ post }) {
     }
 
     return (
-        <Box position={["relative", "", "", "sticky"]} top="5" h="fit-content" minW="sm" bgColor="white" borderColor="blackAlpha.300" shadow="lg">
-            <Box p="2" bgColor="gray.700" color="whitesmoke" borderTopRadius="5" borderBottomLeftRadius="-62">
-            </Box>
-
-            <Box p="5">
+        <Box p="3" position={["relative", "", "", "sticky"]} top="5" h="fit-content" minW="xs" bgColor="white" borderColor="blackAlpha.300" shadow="md">
+            <Text fontSize="lg" mb="2" fontWeight="semibold">Sections</Text>
+            <SimpleGrid columns="3" gap="2">
                 {post.fields.postBody.content.map((item) => {
                     if (item.nodeType === "heading-2") {
                         const id = item.content[0].value.toString().replace(/\s/g, "-").toLowerCase();
                         return (
-                            <Stack key={id} p="1" px="4" bgColor={activeId === id ? "blue.400" : "white"} borderRadius="5" direction="row" alignItems="center" spacing="4">
-                                {activeId === id ? <Selected fontSize="12" color="white" /> : <Unselected fontSize="12" color="blue.400" />}
-                                <Text  _hover={{ textDecor: "underline" }} as={Link} color={activeId === id ? "white" : "blue.400"} fontWeight="semibold" fontSize="sm" href={`#${id}`} onClick={() => handleClick(id)}>{item.content[0].value}</Text>
+                            <Stack key={id} as={Link} p="1" px="4" bgColor={activeId === id ? "blue.400" : "white"} _hover={{ textDecor: "underline" }} transition="0.2s ease" borderRadius="5" direction="row" alignItems="center" spacing="4" href={`#${id}`} onClick={() => handleClick(id)}>
+                                {/* {activeId === id ? <Selected fontSize="12" color="white" /> : <Unselected fontSize="12" color="blue.400" />} */}
+                                <Text color={activeId === id ? "white" : "blue.400"} fontWeight="semibold" fontSize="sm" >{item.content[0].value}</Text>
                             </Stack>
                         );
                     } else {
                         return null;
                     }
                 })}
-            </Box>
+            </SimpleGrid>
         </Box>
     );
 }
