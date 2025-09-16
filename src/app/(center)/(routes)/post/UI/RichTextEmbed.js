@@ -24,7 +24,7 @@ export default function RichTextEmbed({ page }) {
     
 
     const ListItem = ({ children }) => (
-        <Box as="li" mt="2" mb="2" pl="4" fontWeight="semibold">
+        <Box as="li" mt="2" mb="2" pl="4">
             {children}
         </Box>
     );
